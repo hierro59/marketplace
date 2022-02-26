@@ -1,0 +1,40 @@
+[22-Jul-2021 16:38:19 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'Hierro59'@'localhost' to database 'quantlastest' in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 8
+[22-Jul-2021 16:38:19 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php:9
+Stack trace:
+#0 /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php(4): include()
+#1 {main}
+  thrown in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 9
+[22-Jul-2021 16:40:01 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'Hierro59'@'localhost' to database 'quantlastest' in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 8
+[22-Jul-2021 16:40:01 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php:9
+Stack trace:
+#0 /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php(4): include()
+#1 {main}
+  thrown in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 9
+[22-Jul-2021 16:40:17 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'Hierro59'@'localhost' to database 'quantlastest' in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 8
+[22-Jul-2021 16:40:17 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php:9
+Stack trace:
+#0 /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php(4): include()
+#1 {main}
+  thrown in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 9
+[22-Jul-2021 16:40:48 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'Hierro59'@'localhost' to database 'quantlastest' in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 8
+[22-Jul-2021 16:40:48 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php:9
+Stack trace:
+#0 /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php(4): include()
+#1 {main}
+  thrown in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 9
+[22-Jul-2021 16:42:52 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'hierro59'@'localhost' to database 'quantlastest' in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 8
+[22-Jul-2021 16:42:52 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php:9
+Stack trace:
+#0 /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php(4): include()
+#1 {main}
+  thrown in /home/quantlas/public_html/test/ecommerce/sistema/conexion.php on line 9
+[22-Jul-2021 16:44:09 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[22-Jul-2021 17:07:46 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[22-Jul-2021 17:09:14 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[22-Jul-2021 17:11:06 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[23-Jul-2021 18:25:28 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[30-Jul-2021 19:37:45 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[31-Jul-2021 10:25:50 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[31-Jul-2021 10:33:47 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[31-Jul-2021 10:35:56 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29
+[08-Aug-2021 20:16:29 America/New_York] PHP Notice:  Trying to access array offset on value of type null in /home/quantlas/public_html/test/ecommerce/sign-up/sistema/pre-registro.php on line 29

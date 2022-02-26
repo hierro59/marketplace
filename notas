@@ -1,0 +1,59 @@
+//////////////////////////////
+
+///////  ALERTAS   //////////
+
+/////////////////////////////
+
+
+ERRORES:
+
+| VARIABLE |  Nº  | ACCION					| MENSAJE
+--------------------------------------------------------------------------	
+| errno    |  001 |	Al tratar de registrar	| Este usuario ya existe
+
+MENSAJES:
+
+| VARIABLE |  Nº  | ACCION				| MENSAJE
+--------------------------------------------------------------------------	
+| msj      |  001 |	Al registrarse     	| ¡Te registraste! Revisa tu correo
+
+
+
+//////////////////////////////
+//////// TAREAS /////////////
+/////////////////////////////
+
+* Trabajar en los alertas
+
+
+
+Hola Gerardo.
+
+Tomando en cuenta que tienes experiencia en desarrollo backend usando PHP, me gustaría que respondas estás preguntas:
+
+- ¿Cuándo podrías empezar?
+- ¿Cuántos años de experiencia relevante tienes?
+- ¿Por qué eres un buen candidato para este puesto?
+- ¿Cuál es la mejor manera de ponerse en contacto contigo? (Discord, Whatsapp, Messenger u otro)
+- ¿Por qué te interesa este trabajo?
+- ¿Has trabajado bajo la metodología SCRUM?
+- ¿Cuales son los principales retos que has tenido trabajando en SCRUM?
+- ¿Has trabajado en algún proyecto que fracasó? ¿Como te hizo sentir? ¿Que hiciste al respecto?
+- ¿Estarías dispuesto a realizar una prueba de habilidad para optar por el trabajo?
+- ¿Cuanto vale una hora de tu trabajo?
+
+
+Crear un formulario de dos (2) pasos que se ejecute en el mismo contenedor. La primera vista pide los siguientes campos:
+1.- Nombres y apellidos. (text)
+2.- Correo electrónico. (mail)
+3.- Número de tlf. (number)
+4.- País. (select)
+5.- Sexo. (radio)
+6.- Botón de siguiente. (button)
+
+La segunda vista muestra botones de selección múltiple y pregunta cuales lenguajes de programación domina:
+1.- PHP. (Checkbox)
+2.- JavaScript. (Checkbox)
+3.- JQuery. (Checkbox)
+4.- HTML. (Checkbox)
+5.- Botón finalizar. (submit)
