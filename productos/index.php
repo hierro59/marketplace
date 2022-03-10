@@ -1,6 +1,9 @@
 <?php
 include '../sistema/funciones.php';
 include '../sistema/conexion.php';
+include('../sistema/mods/search.php');
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -139,60 +142,61 @@ include '../sistema/conexion.php';
 						</article>
 					</div>
 				</aside>
-
+<?php $query = searchProducts($link, $params); ?>
 				<main class="col-md-9">
 					<header class="border-bottom mb-4 pb-3">
 						<div class="form-inline">
-							<span class="mr-md-auto">50 productos encontrados </span>
+							<span class="mr-md-auto"><?php echo $query->num_rows; ?> productos encontrados </span>
 							<select class="mr-2 form-control">
-								<option>Ùltimos productos</option>
+								<option>Últimos productos</option>
 								<option>Tendencias</option>
 								<option>Màs populares</option>
 							</select>
 						</div>
 					</header>
-
-<?php
-$sql_catalogo = mysqli_query($link,"SELECT * FROM market_producto_general WHERE status = 1");
-	while ($reg_catalogo = mysqli_fetch_assoc($sql_catalogo)) {
-		echo '<div class="card card-product-list">
-						<div class="row no-gutters">
-							<aside class="col-md-3">
-								<a href="'.$url.'articulo/?cod='.$reg_catalogo['codigo'].'" class="img-wrap">
-									<span class="badge badge-danger" style="margin-left: 5%;"> '.$reg_catalogo['nuevo_usado'].' </span>
-									<img src="'.$url.'images/productos/'.$reg_catalogo['codigo'].'-img1.webp">
-								</a>
-							</aside>
-							<div class="col-md-6">
-								<div class="info-main">
-									<a href="'.$url.'articulo/?cod='.$reg_catalogo['codigo'].'">
-										<h2>'.$reg_catalogo['name'].'</h2>
-									</a>
-									<p>
-									'.$reg_catalogo['descripcion'].'
-									</p>
-								</div>
-							</div>
-							<aside class="col-sm-3">
-								<div class="info-aside">
-									<div class="price-wrap">
-										<span class="price h5"> $'.$reg_catalogo['precio'].' </span>
-										<del class="price-old"> $'.$reg_catalogo['antes'].'</del>
+							<?php
+					if ($query->num_rows != 0) {
+						while ($result = mysqli_fetch_assoc($query)) {
+					  echo '<div class="card card-product-list">
+								<div class="row no-gutters">
+									<aside class="col-md-3">
+										<a href="'.$url.'articulo/?cod='.$result['codigo'].'" class="img-wrap">
+											<span class="badge badge-danger" style="margin-left: 5%;"> '.$result['nuevo_usado'].' </span>
+											<img src="'.$url.'images/productos/'.$result['codigo'].'-img1.webp">
+										</a>
+									</aside>
+									<div class="col-md-6">
+										<div class="info-main">
+											<a href="'.$url.'articulo/?cod='.$result['codigo'].'">
+												<h2>'.$result['name'].'</h2>
+											</a>
+											<p>
+											'.substr($result['descripcion'], 0, 250).'...
+											</p>
+										</div>
 									</div>
-									<p class="text-success">50% de descuento</p>
-									<br>
-									<p>
-										<a href="'.$url.'articulo/?cod='.$reg_catalogo['codigo'].'" class="btn text-light btn-light">Detalles</a>
-									</p>
+									<aside class="col-sm-3">
+										<div class="info-aside">
+											<div class="price-wrap">
+												<span class="price h5"> $'.$result['precio'].' </span>
+												<del class="price-old"> $'.$result['antes'].'</del>
+											</div>
+											<p class="text-success">50% de descuento</p>
+											<br>
+											<p>
+												<a href="'.$url.'articulo/?cod='.$result['codigo'].'" class="btn text-light btn-light">Detalles</a>
+											</p>
+										</div>
+									</aside>
 								</div>
-							</aside>
-						</div>
-					</div>';
-	}
+							</div>';
 
-
-
- ?>
+					}
+					}else{
+						echo '<h1>No tenemos nada que se le parezca.</h1><br>
+						<input type="search" placeholder="Nueva Búsqueda" class="form-control">';
+					}
+							?>
 					<nav class="text-center" aria-label="Page navigation sample">
 						<ul class="pagination">
 							<li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
@@ -206,6 +210,10 @@ $sql_catalogo = mysqli_query($link,"SELECT * FROM market_producto_general WHERE 
 			</div>
 		</div>
 	</section>
+
+	<!-- Start Most Popular -->
+	<?php include $_SERVER['DOCUMENT_ROOT'].'/ecommerceTest/sistema/nuevos-articulos.php'; ?>
+<!-- End Most Popular Area -->
 
 	<!-- Social Area -->
 	<section class="social-area section sec wow fadeInUp">

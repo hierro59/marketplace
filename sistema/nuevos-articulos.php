@@ -11,8 +11,9 @@
 				<div class="col-12">
 					<div class="owl-carousel2 popular-slider">
 <?php
-	$sql_new_art = mysqli_query($link,"SELECT * FROM market_producto_general WHERE status = 1");
-	while ($reg_new_art = mysqli_fetch_assoc($sql_new_art)) {
+	//require __DIR__.'/mods/search.php';
+	$all_productos = viewAllProducts($link);
+	while ($reg_new_art = mysqli_fetch_assoc($all_productos)) {
 		echo '<!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
@@ -40,30 +41,6 @@
 						<!-- End Single Product -->';
 	}
  ?>
-						<!-- Start Single Product -->
-						<!-- <div class="single-product">
-							<div class="product-img">
-								<a href="product-details.html">
-									<img class="default-img" src="images/producto4.jpg" alt="#">
-									<img class="hover-img" src="images/producto4.jpg" alt="#">
-								</a>
-								<div class="button-head">
-									<div class="product-action">
-										<a title="" href="#"><i class="ti-heart "></i></a>
-										<a title="" href="#"><i class="fa fa-shopping-cart"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="product-content">
-								<h3><a href="#">SISTEMA DE ENFRIAMIENTO LIQUIDO MSI MAG CORELIQUID 360R ( MAG CORELIQUID
-										360R ) LED - RGB</a></h3>
-								<div class="product-price">
-									<span class="old">$190.00</span>
-									<span>$176.00</span>
-								</div>
-							</div>
-						</div> -->
-						<!-- End Single Product -->
 					</div>
 				</div>
 			</div>

@@ -4,8 +4,9 @@
 session_start();
 
 # Scrip para obtener la URL base del servidor
-$url = "http://".$_SERVER['SERVER_NAME']."/ecommerce/";
+$url = "http://".$_SERVER['SERVER_NAME']."/ecommerceTest/";
 
+define("URL", "$url");
 
 function noUserLvl1() {
     if (empty($_SESSION['id'])) {
@@ -64,4 +65,6 @@ function alerts($alert, $code) {
         }
     }
 }
+
+
 ?>

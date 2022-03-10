@@ -1,6 +1,7 @@
 <?php
 include 'sistema/funciones.php';
 include 'sistema/conexion.php';
+include 'sistema/mods/search.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -58,7 +59,7 @@ include 'sistema/conexion.php';
 
 <?php 
 if (!empty($alert)) { alerts($alert, $code); }
-include 'sistema/header.php'; 
+include 'sistema/header.php';
 ?>
 
 	<!-- Hero -->
@@ -71,7 +72,7 @@ include 'sistema/header.php';
 						<div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
 						<!-- Search Form -->
 						<div class="search-top">
-							<form>
+							<form method="GET" action="productos">
 								<div class="form-group search-form">
 									<input type="text" placeholder="Buscar..." name="search">
 									<button class="btnn" value="search" type="submit"><i class="ti-search"></i>
@@ -94,8 +95,9 @@ include 'sistema/header.php';
 						</div>
 						<div class="search-bar-top mt-8">
 							<div class="search-bar">
-								<select>
-                                          <option value="" disabled selected>Categorías</option>
+								<form  method="GET" action="productos">
+									<select name="category">
+                                          <option value="" selected>Categorías</option>
                                           <option value="1">Celulares</option>
                                           <option value="2">Accesorios para vehículos</option>
                                           <option value="3">Agro</option>
@@ -118,8 +120,8 @@ include 'sistema/header.php';
                                           <option value="20">Herramientas</option>
                                           <option value="21">Estética y Belleza</option>
                                           <option value="22">Electrónica, Audio y Video</option>
-                                        </select>
-								<form class="form-group">
+                                    </select>
+                                
 									<input name="search" placeholder="Busca productos, marcas, y más..." type="search">
 									<button class="btnn"><i class="ti-search"></i></button>
 								</form>
