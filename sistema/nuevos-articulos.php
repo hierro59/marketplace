@@ -14,6 +14,7 @@
 	//require __DIR__.'/mods/search.php';
 	$all_productos = viewAllProducts($link);
 	while ($reg_new_art = mysqli_fetch_assoc($all_productos)) {
+		$shortText = stringShortener($url, $reg_new_art, 28);
 		echo '<!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
@@ -29,7 +30,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="'.$url.'articulo/?cod='.$reg_new_art['codigo'].'" style="text-transform: uppercase">'.$reg_new_art['name'].'</h3>
+								<h3><a href="'.$url.'articulo/?cod='.$reg_new_art['codigo'].'" style="text-transform: uppercase">'. $shortText['name'].'</h3>
 								<div class="product-price">';
 								if ($reg_new_art['antes'] != 0) {
 									echo '<span class="old" style="font-size: .7em;">$'.$reg_new_art['antes'].'</span> ';

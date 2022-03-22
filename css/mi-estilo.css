@@ -48,6 +48,15 @@ textarea.form-control {
 	display: none !important;
 }
 
+.btn-ico {
+	display: block !important;
+	font-size: 3rem !important;
+}
+
+.color-blue {
+	color:  #007bff;
+}
+
 @media only screen and (max-width: 991px) {
 	.foto-producto img {
 	width: 100%;

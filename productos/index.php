@@ -2,15 +2,13 @@
 include '../sistema/funciones.php';
 include '../sistema/conexion.php';
 include('../sistema/mods/search.php');
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 	<!-- Meta Tag -->
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='copyright' content=''>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,105 +72,44 @@ include('../sistema/mods/search.php');
 	<section class="offers-area">
 		<div class="container">
 			<div class="row">
-				<aside class="col-md-3">
-
-					<div class="card">
-						<article class="filter-group">
-							<header class="card-header">
-								<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true"
-									class="">
-									<i class="icon-control fa fa-chevron-down"></i>
-									<h6 class="title">Tipos de productos</h6>
-								</a>
-							</header>
-							<div class="filter-content collapse show" id="collapse_1">
-								<div class="card-body">
-									<form class="pb-3">
-										<div class="input-group">
-											<input type="text" class="form-control" placeholder="Busca productos, marcas, y más...">
-											<div class="input-group-append">
-												<button class="btnn" type="button"><i
-														class="fa fa-search"></i></button>
-											</div>
-										</div>
-									</form>
-
-									<ul class="list-menu">
-										<li class="mt-2"><a href="#">Perifericos de PC</a></li>
-										<li class="mt-2"><a href="#">Relojes</a></li>
-										<li class="mt-2"><a href="#">Productos para el hogar</a></li>
-										<li class="mt-2"><a href="#">Productos para Animales</a></li>
-										<li class="mt-2"><a href="#">Productos de limpieza</a></li>
-									</ul>
-								</div>
-							</div>
-						</article>
-
-						<article class="filter-group">
-							<header class="card-header">
-								<a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true"
-									class="">
-									<i class="icon-control fa fa-chevron-down"></i>
-									<h6 class="title">Buscar por tallas </h6>
-								</a>
-							</header>
-							<div class="filter-content collapse show" id="collapse_4">
-								<div class="card-body">
-									<label class="checkbox-btn">
-										<input type="checkbox">
-										<span class="btn2 btn-light"> XS </span>
-									</label>
-
-									<label class="checkbox-btn">
-										<input type="checkbox">
-										<span class="btn2 btn-light"> SM </span>
-									</label>
-
-									<label class="checkbox-btn">
-										<input type="checkbox">
-										<span class="btn2 btn-light"> LG </span>
-									</label>
-
-									<label class="checkbox-btn">
-										<input type="checkbox">
-										<span class="btn2 btn-light"> XXL </span>
-									</label>
-								</div>
-							</div>
-						</article>
-					</div>
-				</aside>
+				<!-- Start SideBar -->
+				<?php include '../sistema/plantillas/sidebar.php'; ?>
+				<!-- End SideBar -->
 <?php $query = searchProducts($link, $params); ?>
 				<main class="col-md-9">
 					<header class="border-bottom mb-4 pb-3">
 						<div class="form-inline">
 							<span class="mr-md-auto"><?php echo $query->num_rows; ?> productos encontrados </span>
-							<select class="mr-2 form-control">
-								<option>Últimos productos</option>
-								<option>Tendencias</option>
-								<option>Màs populares</option>
-							</select>
+							<form id="filter" method="get" action="index.php">
+								<select onchange="send();" name="searchFilter" class="mr-2">
+									<option selected="selected" disabled value="">Filtrar por:</option>
+									<option value="last">Últimos productos</option>
+									<option value="expensive">Mayor precio</option>
+									<option value="cheap">Menor Precio</option>
+								</select>
+							</form>
 						</div>
 					</header>
 							<?php
 					if ($query->num_rows != 0) {
 						while ($result = mysqli_fetch_assoc($query)) {
-					  echo '<div class="card card-product-list">
+							$shortText = stringShortener($url, $result, 18);
+							echo '<div class="card card-product-list">
 								<div class="row no-gutters">
 									<aside class="col-md-3">
 										<a href="'.$url.'articulo/?cod='.$result['codigo'].'" class="img-wrap">
 											<span class="badge badge-danger" style="margin-left: 5%;"> '.$result['nuevo_usado'].' </span>
-											<img src="'.$url.'images/productos/'.$result['codigo'].'-img1.webp">
+											<img src="'.$url.'images/productos/'.$result['codigo'].'-img1.webp" style="height: 200px; object-fit: cover;">
 										</a>
 									</aside>
 									<div class="col-md-6">
 										<div class="info-main">
 											<a href="'.$url.'articulo/?cod='.$result['codigo'].'">
-												<h2>'.$result['name'].'</h2>
+												<h2>'. $shortText['name'] . '</h2>
 											</a>
 											<p>
-											'.substr($result['descripcion'], 0, 250).'...
-											</p>
+											' .$shortText['descripcion'].
+											'</p>
 										</div>
 									</div>
 									<aside class="col-sm-3">
@@ -212,8 +149,8 @@ include('../sistema/mods/search.php');
 	</section>
 
 	<!-- Start Most Popular -->
-	<?php include $_SERVER['DOCUMENT_ROOT'].'/ecommerceTest/sistema/nuevos-articulos.php'; ?>
-<!-- End Most Popular Area -->
+	<?php include '../sistema/nuevos-articulos.php'; ?>
+	<!-- End Most Popular Area -->
 
 	<!-- Social Area -->
 	<section class="social-area section sec wow fadeInUp">
@@ -303,6 +240,14 @@ include('../sistema/mods/search.php');
 	<script src="<?php echo $url;?>js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="<?php echo $url;?>js/active.js"></script>
+
+	<script type="text/javascript">
+		function send() {
+			var form = document.getElementById("filter");
+			form.submit();
+		}
+	</script>
+
 </body>
 
 </html>

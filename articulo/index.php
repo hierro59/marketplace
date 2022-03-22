@@ -1,10 +1,10 @@
 <?php
 include '../sistema/funciones.php';
 include '../sistema/conexion.php';
+include('../sistema/mods/search.php');
 $cod = $_GET['cod'];
 $sql_art = mysqli_query($link,"SELECT * FROM market_producto_general WHERE codigo = '$cod' AND status = 1");
 $reg_art = mysqli_fetch_assoc($sql_art);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -226,7 +226,7 @@ $reg_art = mysqli_fetch_assoc($sql_art);
 
 	<!--/ End ProductoDetails -->
 
-	<!-- Most Popular -->
+	<!-- Start Most Popular -->
 		<?php include '../sistema/nuevos-articulos.php'; ?>
 	<!-- End Most Popular Area -->
 

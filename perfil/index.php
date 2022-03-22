@@ -55,73 +55,112 @@ include '../sistema/funciones.php';
 	<?php include '../sistema/header.php'; ?>
 	<!--/ End Header -->
 
-	<!-- Sign Up Area -->
-
 <?php 
 	$sql = mysqli_query($link,"SELECT * FROM usuarios_confirmados WHERE id = '$id' AND status = '1'");
 	$reg = mysqli_fetch_array($sql);
  ?>
-	<section class="signUp-area">
-		<div class="card mx-auto" style="max-width:620px; margin-top:40px;">
-			<div class="card-body">
-				<header class="mb-4" style="background-color: var(--primary-color); padding: 20px; color: #fff; text-align: center; text-transform: uppercase;"><h4 class="card-title">Perfil de usuario</h4></header>
-				<form method="POST">
-                    <div class="form-row mb-2">
-                    	<?php if (isset($_GET['err']) && $_GET['err'] == '999') {
-                        	echo '<div class="form-group col-md-12" style="background-color: red; padding: 1%;">
-		                        	<span class="" style="color: #fff; font-weight: 700;">Multiples problemas</span>
-		                          </div>';
-                        } ?>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">Nombre </label>
-                            <div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['nombre']; ?></div>
-                            
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">Apellido </label>
-                            <div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['apellido']; ?></div>
-                        </div>
-                        <div class="form-group col-md-6">
-                        	<label class="font-weight-bold">Teléfono </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['tlf']; ?></div>
-                        </div>
-                        <div class="form-group col-md-6">
-                        	<label class="font-weight-bold">Correo </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['correo']; ?></div>
-                        </div>
-                        
-                        <div class="form-group col-md-12">
-                        	<label class="font-weight-bold">Dirección </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['direccion']; ?></div>
-                        </div>
-                        <div class="form-group col-md-6">
-                        	<label class="font-weight-bold">Ciudad </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['ciudad']; ?></div>
-                        </div>
-                        <div class="form-group col-md-6">
-                        	<label class="font-weight-bold">Estado </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['estado']; ?></div>
-                        </div>
-                        <div class="form-group col-md-6">
-                        	<label class="font-weight-bold">País </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['pais']; ?></div>
-                        </div>
-                        <div class="form-group col-md-6">
-                        	<label class="font-weight-bold">DNI </label>
-                        	<div class="form-control" style="background-color: #aaa; color: #fff; font-weight: 700;"><?php echo $reg['dni']; ?></div>
-                        </div>
-                        	
-                        
-	                    
-                    </div>
-				    <div class="form-group">
-				        <button type="submit" class="btn btn-block">Editar</button>
-				    </div>
-				</form>
-			</div>
-		</div>
-	</section>
-	<!-- End Sign Up Area -->
+
+ 	<section>
+ 		<div class="container">
+ 			<div class="row">
+ 				<div class="col-12" style="padding: 2%;">
+ 					<h5>Perfil de usuario</h5>
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<div style="width: 100%; background-color: #aaa; height: 300px; text-align: center;">
+ 						<p style="padding-top: 150px; font-size: 2rem;">Foto de portada</p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-2">
+ 					<div style="width: 200px; background-color: #666; height: 200px; border-radius: 50%; margin-top: -100px; margin-left: 50px; box-shadow: 2px 2px 5px #000; text-align: center;">
+ 						<p style="padding-top: 70px; font-size: 1.3rem; color: #fff;">Foto de perfil</p>
+ 					</div>
+ 				</div>
+ 				<div class="col-6">
+ 					<h1 style="text-shadow: 1px 1px 2px #000;">Felix Leon</h1>
+ 				</div>
+ 				<div class="col-4" style="padding-top: 30px;">
+ 					<h5>Usuario: <b>Hierro59</b></h5>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		<div class="container">
+ 			<div class="row">
+ 				<div class="col-12" style="width: 100%; background-color: #ddd; margin-top: 2%;">
+ 					<div class="row">
+ 						<div class="col-12" style="padding: 2%;">
+ 							<h4>Datos personales</h4>
+ 						</div>
+ 					</div>
+ 					<div class="row">
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>Nombres:</h4>
+ 						</div>
+ 						<div class="col-3" style="padding: 2%;">
+ 							<h4><?php echo $reg['nombre']." ".$reg['apellido']; ?></h4>
+ 						</div>
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>Teléfono:</h4>
+ 						</div>
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4><?php echo $reg['tlf']; ?></h4>
+ 						</div>
+ 					</div>
+ 					<div class="row">
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>Email:</h4>
+ 						</div>
+ 						<div class="col-3" style="padding: 2%;">
+ 							<h4><?php echo $reg['correo']; ?></h4>
+ 						</div>
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>DNI:</h4>
+ 						</div>
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4><?php echo $reg['dni']; ?></h4>
+ 						</div>
+ 					</div>
+ 					<div class="row">
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>Dirección:</h4>
+ 						</div>
+ 						<div class="col-8" style="padding: 2%;">
+ 							<h4><?php echo $reg['direccion']; ?></h4>
+ 						</div>
+ 					</div>
+ 					<div class="row">
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>Ciudad:</h4>
+ 						</div>
+ 						<div class="col-3" style="padding: 2%;">
+ 							<h4><?php echo $reg['ciudad']; ?></h4>
+ 						</div>
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>Estado:</h4>
+ 						</div>
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4><?php echo $reg['estado']; ?></h4>
+ 						</div>
+ 					</div>
+ 					<div class="row">
+ 						<div class="col-2" style="padding: 2%;">
+ 							<h4>País:</h4>
+ 						</div>
+ 						<div class="col-3" style="padding: 2%;">
+ 							<h4><?php echo $reg['pais']; ?></h4>
+ 						</div>
+ 						<div class="col-7" style="padding: 2%; padding-right: 5%; text-align: right;">
+ 							<a href="#!" class="btn-primary" style="padding: 2%; border-radius: 5px;">Editar</a>
+ 						</div>
+ 					</div>
+ 				</div> 				
+ 			</div> 			
+ 		</div>
+ 	</section>
 
 	<!-- Social Area -->
 	<section class="social-area section sec wow fadeInUp">

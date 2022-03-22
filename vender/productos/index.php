@@ -29,6 +29,7 @@ noUserLvl2();
 	<link rel="stylesheet" href="<?php echo $url;?>css/magnific-popup.min.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="<?php echo $url;?>css/font-awesome.css">
+    <script src="https://kit.fontawesome.com/13d4eb0966.js" crossorigin="anonymous"></script>
 	<!-- Fancybox -->
 	<link rel="stylesheet" href="<?php echo $url;?>css/jquery.fancybox.min.css">
 	<!-- Themify Icons -->
@@ -49,6 +50,15 @@ noUserLvl2();
 	<link rel="stylesheet" href="<?php echo $url;?>css/style.css">
 	<link rel="stylesheet" href="<?php echo $url;?>css/responsive.css">
 	<link rel="stylesheet" href="<?php echo $url;?>css/mi-estilo.css">
+
+  <!-- TinyMCE text editor  -->
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({selector:'textarea',
+        setup: function (editor) {
+        editor.on('change', function () {
+            tinymce.triggerSave();
+        });
+    }});</script>
 </head>
 
 <body class="js">
@@ -164,16 +174,24 @@ noUserLvl2();
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="descripcion" style="width: 100%;">Precio:
-                                            <input type="number" class="form-control" name="precio" placeholder="Indica el precio" step="any" required>
+                                            <input type="number" class="form-control" name="precio" placeholder="Indica el precio">
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group" style="text-align: center;">
-                                        <label for="nuevo" style="width: 100%;">Nuevo
+                                        <label class="" for="nuevo" style="width: 100%;" id="btn-ico-new">
+                                            <i class="fa-solid fa-thumbs-up btn-ico"></i>
+                                            Nuevo
                                             <input type="radio" class="form-control" name="nuevo-usado" id="nuevo" value="Nuevo" required>
                                         </label>
-                                        <label for="usado" style="width: 100%;">Usado
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <label for="usado" style="width: 100%;">
+                                            <i class="fa-solid fa-hand-peace btn-ico"></i>
+                                            Usado
                                             <input type="radio" class="form-control" name="nuevo-usado" id="usado" value="Usado">
                                         </label>
                                     </div>
@@ -266,21 +284,29 @@ noUserLvl2();
 	<script src="<?php echo $url;?>js/active.js"></script>
 
 	<script>
-function filePreview(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#uploadForm + img').remove();
-            $('#uploadForm').after('<div style="text-align: center;"><img src="'+e.target.result+'" width="450" height="300"/></div>');
-            $('#label').addClass('hidden');
+        function filePreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadForm + img').remove();
+                    $('#uploadForm').after('<div style="text-align: center;"><img src="'+e.target.result+'" width="450" height="300"/></div>');
+                    $('#label').addClass('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#foto1").change(function () {
-    filePreview(this);
-});
+        $("#foto1").change(function () {
+            filePreview(this);
+        });
 	</script>
+    <script>
+        $(document).ready(function(){
+            $("#btn-ico-new").click(function(){
+                $('.btn-ico').addClass("color-blue");
+                //$('#btn-ico-used').removeClass("color-blue");
+            });
+        }
+    </script>
 </body>
 
 </html>
