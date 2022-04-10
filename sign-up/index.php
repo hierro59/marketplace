@@ -1,10 +1,8 @@
 <?php 
 include '../sistema/funciones.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<!-- Meta Tag -->
 	<meta charset="utf-8">
@@ -20,9 +18,7 @@ include '../sistema/funciones.php';
 	<link
 		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
 		rel="stylesheet">
-
 	<!-- StyleSheet -->
-
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="<?php echo $url; ?>css/bootstrap.css">
 	<!-- Magnific Popup -->
@@ -41,30 +37,21 @@ include '../sistema/funciones.php';
 	<link rel="stylesheet" href="<?php echo $url; ?>css/owl-carousel.css">
 	<!-- Slicknav -->
 	<link rel="stylesheet" href="<?php echo $url; ?>css/slicknav.min.css">
-
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="<?php echo $url; ?>css/reset.css">
 	<link rel="stylesheet" href="<?php echo $url; ?>css/style.css">
 	<link rel="stylesheet" href="<?php echo $url; ?>css/responsive.css">
-
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
-
-
 </head>
-
 <body class="js">
-
 <?php 
-
 if (!empty($alert)) {
 	alerts($alert, $code);
 }
-
  ?>
 	<!-- Header -->
-	<?php include '../sistema/header.php'; ?>
+		<?php include '../sistema/header.php'; ?>
 	<!--/ End Header -->
-
 	<!-- Sign Up Area -->
 	<section class="signUp-area">
 		<div class="card mx-auto" style="max-width:620px; margin-top:40px;">
@@ -115,43 +102,6 @@ if (!empty($alert)) {
 		</div>
 	</section>
 	<!-- End Sign Up Area -->
-
-	<!-- Social Area -->
-	<section class="social-area section sec wow fadeInUp">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-whatsapp" style="color: #4ac959;"></i>
-							<h4>WhatsApp</h4>
-							<p>¡Envíanos un mensaje!</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-instagram" style="color: #e1306c;"></i>
-							<h4>Instagram</h4>
-							<p>¡Siguenos en Instagram!</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-facebook" style="color: #5cc5ff;"></i>
-							<h4>Facebook</h4>
-							<p>¡Siguenos en Facebook!</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- /Social Area -->
-
 	<!-- Start Footer Area -->
 	<footer class="footer">
 		<div class="copyright">

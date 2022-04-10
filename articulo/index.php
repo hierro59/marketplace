@@ -5,6 +5,7 @@ include('../sistema/mods/search.php');
 $cod = $_GET['cod'];
 $sql_art = mysqli_query($link,"SELECT * FROM market_producto_general WHERE codigo = '$cod' AND status = 1");
 $reg_art = mysqli_fetch_assoc($sql_art);
+$regUser = viweUser($reg_art['usuario']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -136,15 +137,19 @@ $reg_art = mysqli_fetch_assoc($sql_art);
 								<span
 								style="font-size: 60px;
 								font-weight: 700; color: var(--primary-color); margin-right: 8px;">
-                                $<?php echo $reg_art['precio']; ?>
-                            	</span>
-                            </p>
-                        </div>
+                  $ <?php echo $reg_art['precio']; ?>
+                <br>
+                <small style="font-size: 1rem">Bs. <?php echo cambioUSD($reg_art['precio']);?></small>
+              	</span>
+              </p>
+          	</div>
 					</div>
 					<div class="addcart-content mt-4">
 						<a class="btn" href="#" style="border-radius: 5px; color: #fff;">
 							<i class="fa fa-shopping-cart"> </i> <b>Comprar</b>
 						</a>
+						<small style="font-size: 1rem; display: block; padding: 2% 0">Publicado por: <a href="<?php echo $url; ?>/perfil?user=<?php echo  $regUser['id']; ?>">@<?php echo $regUser['username'];?></a></small>
+            </span>
 					</div>
 				</div>
 			</div>
@@ -230,12 +235,9 @@ $reg_art = mysqli_fetch_assoc($sql_art);
 		<?php include '../sistema/nuevos-articulos.php'; ?>
 	<!-- End Most Popular Area -->
 
-	<!-- Banner Ads -->
-	<section class="">
-		<div class="container">
-		</div>
-	</section>
-	<!-- End Banner Ads -->
+	<!-- Social Area -->
+		<?php include '../sistema/plantillas/rrssMarket.php'; ?>
+	<!-- /Social Area -->
 
 	<!-- Start Footer Area -->
 		<?php include '../sistema/footer.php'; ?>

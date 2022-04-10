@@ -11,7 +11,6 @@
 				<div class="col-12">
 					<div class="owl-carousel2 popular-slider">
 <?php
-	//require __DIR__.'/mods/search.php';
 	$all_productos = viewAllProducts($link);
 	while ($reg_new_art = mysqli_fetch_assoc($all_productos)) {
 		$shortText = stringShortener($url, $reg_new_art, 28);

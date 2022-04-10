@@ -19,18 +19,10 @@
 						<div class="right-content">
 							<ul class="list-main">
 								<?php
-
-								include 'conexion.php';
-
 								if (isset($_SESSION['id'])) {
-									$id = $_SESSION['id'];
-
-									$sql = mysqli_query($link,"SELECT nombre, apellido FROM usuarios_confirmados WHERE id = '$id'");
-	  								$reg = mysqli_fetch_array($sql);
-
-
+									$headerUser = getUser($_SESSION['id']);
 	  								echo '<li><i class="ti-user"></i> <a class=""
-										href="'.$url.'perfil">'.$reg['nombre'].' '.$reg['apellido'].'</a></li>
+										href="'.$url.'perfil">'.$headerUser['nombre'].' '.$headerUser['apellido'].'</a></li>
 										<li><i class="fa fa-sign-out"></i> <a class=""
 										href="'.$url.'login/logout">Salir</a></li>';
 								}else{
@@ -38,7 +30,6 @@
 										href="#test-form">Acceder/Registrarse</a></li>';
 								}
 								 ?>
-								
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -47,120 +38,98 @@
 			</div>
 		</div>
 		<!-- Header Inner -->
+
 		<div class="header-inner">
 			<div class="container">
 				<div class="cat-nav-head">
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="all-category">
+								<?php $getAlimentos = viweNavBar($link, 4); ?>
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>MarketPlace</h3>
-								<ul class="main-category">
-									<li class="main-mega"><a href="#">Componentes de PC <i class="fa fa-angle-right"
+								<ul class="main-category" style="">
+									<li class="main-mega" style="<?php if (empty($getAlimentos)) { echo 'display:  none'; }	?>"><a href="#">Alimentos y bebidas <i class="fa fa-angle-right"
 												aria-hidden="true"></i></a>
 										<ul class="mega-menu">
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
+								<?php 
+									while ($regAlimentos = mysqli_fetch_assoc($getAlimentos)) {
+									  echo '<li class="single-menu">
+												<a href="'.$url.'articulo/?cod='.$regAlimentos['codigo'].'"><div class="image">
+													<img class="default-img" src="'.$url.'images/productos/'.$regAlimentos['codigo'].'-img1.webp" alt="#" style="height: 200px; object-fit: cover;">
+													<span style="color: #111;">'.$regAlimentos['name'].'</span>
+												</div></a>
+											</li>';
+									}
+								?>
 										</ul>
 									</li>
-									<li class="main-mega"><a href="#">Perifericos <i class="fa fa-angle-right"
+								<?php $getElectronica = viweNavBar($link, 22); ?>
+									<li class="main-mega" style="<?php if (empty($getElectronica)) { echo 'display:  none'; }	?>"><a href="#">Electrónica, audio y vídeo <i class="fa fa-angle-right"
 												aria-hidden="true"></i></a>
 										<ul class="mega-menu">
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
+								<?php 
+									while ($regElectronica = mysqli_fetch_assoc($getElectronica)) {
+									  echo '<li class="single-menu">
+												<a href="'.$url.'articulo/?cod='.$regElectronica['codigo'].'"><div class="image">
+													<img class="default-img" src="'.$url.'images/productos/'.$regElectronica['codigo'].'-img1.webp" alt="#" style="height: 200px; object-fit: cover;">
+													<span style="color: #111;">'.$regElectronica['name'].'</span>
+												</div></a>
+											</li>';
+									}
+								?>
 										</ul>
 									</li>
-									<li class="main-mega"><a href="#">Equipos de Trabajo <i class="fa fa-angle-right"
+								<?php $getEstetica = viweNavBar($link, 21); ?>
+									<li class="main-mega" style="<?php if (empty($getEstetica)) { echo 'display:  none'; }	?>"><a href="#">Estética y belleza <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<ul class="mega-menu">
+								<?php 
+									while ($regEstetica = mysqli_fetch_assoc($getEstetica)) {
+									  echo '<li class="single-menu">
+												<a href="'.$url.'articulo/?cod='.$regEstetica['codigo'].'"><div class="image">
+													<img class="default-img" src="'.$url.'images/productos/'.$regEstetica['codigo'].'-img1.webp" alt="#" style="height: 200px; object-fit: cover;">
+													<span style="color: #111;">'.$regEstetica['name'].'</span>
+												</div></a>
+											</li>';
+									}
+								?>
+										</ul>
+									</li>
+								<?php $getHogar = viweNavBar($link, 18); ?>
+									<li class="main-mega" style="<?php if (empty($getHogar)) { echo 'display:  none'; }	?>"><a href="#">Hogar y muebles <i class="fa fa-angle-right"
 												aria-hidden="true"></i></a>
 										<ul class="mega-menu">
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
+									<?php 
+									while ($regHogar = mysqli_fetch_assoc($getHogar)) {
+									  echo '<li class="single-menu">
+												<a href="'.$url.'articulo/?cod='.$regHogar['codigo'].'"><div class="image">
+													<img class="default-img" src="'.$url.'images/productos/'.$regHogar['codigo'].'-img1.webp" alt="#" style="height: 200px; object-fit: cover;">
+													<span style="color: #111;">'.$regHogar['name'].'</span>
+												</div></a>
+											</li>';
+									}
+								?>
 										</ul>
 									</li>
-									<li class="main-mega"><a href="#">Conectividad <i class="fa fa-angle-right"
+								<?php $getCamaras = viweNavBar($link, 8); ?>
+									<li class="main-mega" style="<?php if (empty($getCamaras)) { echo 'display:  none'; }	?>"><a href="#">Cámaras y accesorios <i class="fa fa-angle-right"
 												aria-hidden="true"></i></a>
 										<ul class="mega-menu">
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
+									<?php 
+									while ($regCamaras = mysqli_fetch_assoc($getCamaras)) {
+									  echo '<li class="single-menu">
+												<a href="'.$url.'articulo/?cod='.$regCamaras['codigo'].'"><div class="image">
+													<img class="default-img" src="'.$url.'images/productos/'.$regCamaras['codigo'].'-img1.webp" alt="#" style="height: 200px; object-fit: cover;">
+													<span style="color: #111;">'.$regCamaras['name'].'</span>
+												</div></a>
+											</li>';
+									}
+								?>
 										</ul>
 									</li>
-									<li class="main-mega"><a href="#">hogar & departamento <i class="fa fa-angle-right"
-												aria-hidden="true"></i></a>
-										<ul class="mega-menu">
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-											<li class="single-menu">
-												<div class="image">
-													<img src="https://via.placeholder.com/225x155" alt="#">
-												</div>
-											</li>
-										</ul>
-									</li>
-									<li><a href="#">Equipos de Venta</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Licencias de Software</a></li>
-									<li><a href="#">Mini PC's</a></li>
-									<li><a href="#">Monitores</a></li>
-									<li><a href="#">UPS, Estabilizadores, Supresores </a></li>
+									<li><a href="<?php echo $url; ?>productos/?category=1">Smartphone</a></li>
+									<li><a href="<?php echo $url; ?>productos/?category=9">Laptops</a></li>
+									<li><a href="<?php echo $url; ?>productos/?category=9">Mini PC's</a></li>
+									<li><a href="<?php echo $url; ?>productos/?category=9">Monitores</a></li>
 								</ul>
 							</div>
 						</div>

@@ -1,11 +1,8 @@
 <?php include '../../sistema/funciones.php'; 
 include '../../sistema/conexion.php';
-
 $key_confirm = htmlentities($_GET['check'], ENT_QUOTES);
-
 $sql = mysqli_query($link,"SELECT key_confirm FROM pre_registro_usuarios WHERE key_confirm = '$key_confirm' AND status = '0'");
 $reg = mysqli_fetch_array($sql);
-
 if (isset($reg)) {
 	$key_guardada = $reg['key_confirm'];
 	if ($key_confirm == $key_guardada) {
@@ -154,43 +151,6 @@ if (isset($reg)) {
 		</div>
 	</section>
 	<!-- End Sign Up Area -->
-
-	<!-- Social Area -->
-	<section class="social-area section sec wow fadeInUp">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-whatsapp" style="color: #4ac959;"></i>
-							<h4>WhatsApp</h4>
-							<p>¡Envíanos un mensaje!</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-instagram" style="color: #e1306c;"></i>
-							<h4>Instagram</h4>
-							<p>¡Siguenos en Instagram!</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-facebook" style="color: #5cc5ff;"></i>
-							<h4>Facebook</h4>
-							<p>¡Siguenos en Facebook!</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- /Social Area -->
-
 	<!-- Start Footer Area -->
 	<footer class="footer">
 		<div class="copyright">

@@ -2,10 +2,17 @@
 include '../sistema/funciones.php';
 include '../sistema/conexion.php';
 include('../sistema/mods/search.php');
+$max_productos = 5;
+$query = searchProducts($link, $max_productos);
+$num_paginas = ceil($_SESSION['maxrows'] / $max_productos);
+if (isset($_GET['pagina'])) {
+	$pagina = $_GET['pagina'];
+}else{
+	$pagina = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<!-- Meta Tag -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -21,9 +28,7 @@ include('../sistema/mods/search.php');
 	<link
 		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
 		rel="stylesheet">
-
 	<!-- StyleSheet -->
-
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="<?php echo $url;?>css/bootstrap.css">
 	<!-- Magnific Popup -->
@@ -44,20 +49,15 @@ include('../sistema/mods/search.php');
 	<link rel="stylesheet" href="<?php echo $url;?>css/owl-carousel.css">
 	<!-- Slicknav -->
 	<link rel="stylesheet" href="<?php echo $url;?>css/slicknav.min.css">
-
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="<?php echo $url;?>css/reset.css">
 	<link rel="stylesheet" href="<?php echo $url;?>css/style.css">
 	<link rel="stylesheet" href="<?php echo $url;?>css/responsive.css">
-
 </head>
-
 <body class="js">
-
 	<!-- Header -->
 		<?php include '../sistema/header.php'; ?>
 	<!--/ End Header -->
-
 	<section class="breadcrumb-area">
 		<div class="container">
 			<div class="row">
@@ -68,18 +68,16 @@ include('../sistema/mods/search.php');
 			<h2>Catálogo de Ofertas</h2>
 		</div>
 	</section>
-
 	<section class="offers-area">
 		<div class="container">
 			<div class="row">
 				<!-- Start SideBar -->
 				<?php include '../sistema/plantillas/sidebar.php'; ?>
 				<!-- End SideBar -->
-<?php $query = searchProducts($link, $params); ?>
 				<main class="col-md-9">
 					<header class="border-bottom mb-4 pb-3">
 						<div class="form-inline">
-							<span class="mr-md-auto"><?php echo $query->num_rows; ?> productos encontrados </span>
+							<span class="mr-md-auto"><?php echo $_SESSION['maxrows']; ?> productos encontrados </span>
 							<form id="filter" method="get" action="index.php">
 								<select onchange="send();" name="searchFilter" class="mr-2">
 									<option selected="selected" disabled value="">Filtrar por:</option>
@@ -90,25 +88,34 @@ include('../sistema/mods/search.php');
 							</form>
 						</div>
 					</header>
-							<?php
+				<?php
 					if ($query->num_rows != 0) {
 						while ($result = mysqli_fetch_assoc($query)) {
-							$shortText = stringShortener($url, $result, 18);
-							echo '<div class="card card-product-list">
+							if(strlen($result['name']) > 18) {
+								$name = substr($result['name'], 0, 18) . '...';
+							} else {
+								$name = $result['name'];
+							}
+							if(strlen($result['descripcion']) > 116) {
+								$descripcion = substr(strip_tags($result['descripcion']), 0, 116) . '... <a href="'.$url.'articulo/?cod='.$result['codigo'].'">Leer más.</a>';
+							} else {
+								$descripcion = $result['descripcion'];
+							}
+					  		echo '<div class="card card-product-list">
 								<div class="row no-gutters">
 									<aside class="col-md-3">
 										<a href="'.$url.'articulo/?cod='.$result['codigo'].'" class="img-wrap">
 											<span class="badge badge-danger" style="margin-left: 5%;"> '.$result['nuevo_usado'].' </span>
-											<img src="'.$url.'images/productos/'.$result['codigo'].'-img1.webp" style="height: 200px; object-fit: cover;">
+											<img src="'.$url.'images/productos/'.$result['codigo'].'-img1.webp">
 										</a>
 									</aside>
 									<div class="col-md-6">
 										<div class="info-main">
 											<a href="'.$url.'articulo/?cod='.$result['codigo'].'">
-												<h2>'. $shortText['name'] . '</h2>
+												<h2>'. $name . '</h2>
 											</a>
 											<p>
-											' .$shortText['descripcion'].
+											' . $descripcion .
 											'</p>
 										</div>
 									</div>
@@ -127,67 +134,71 @@ include('../sistema/mods/search.php');
 									</aside>
 								</div>
 							</div>';
-
-					}
+						}
 					}else{
 						echo '<h1>No tenemos nada que se le parezca.</h1><br>
 						<input type="search" placeholder="Nueva Búsqueda" class="form-control">';
 					}
-							?>
+				?>
+				<!-- Pagination -->
 					<nav class="text-center" aria-label="Page navigation sample">
 						<ul class="pagination">
-							<li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+							<li class="page-item <?php echo $pagina <= 1 ? 'disabled' : '' ?>">
+								<a class="page-link" href="index.php?pagina=<?php echo $pagina - 1 ?>">
+									Anterior
+								</a>
+							</li>
+							<?php
+								$sw = true;
+								for($i = 0; $i <  $num_paginas; $i++): 
+							?>
+							<li class="page-item 
+								<?php
+									if(isset($pagina)) {
+										if($pagina == $i + 1) {
+											echo 'active';
+										} else {
+											echo '';
+										}
+									} else {
+										if($sw == true) {
+											echo 'active';
+											$sw = false;
+										}
+									}
+								?>
+								">
+									<a class="page-link" href="index.php?pagina=<?php echo $i + 1 ?>">
+											<?php echo $i + 1 ?>
+									</a>
+								</li>
+							<?php endfor ?>
+							<li class="page-item 
+							<?php 
+								if($pagina >= $num_paginas || $_SESSION['maxrows'] == 1){
+								echo 'disabled';
+								} else {
+									echo '';
+								}
+							?>
+							">
+								<a class="page-link" href="index.php?pagina=<?php echo $pagina + 1 ?>">
+									Siguiente
+								</a>
+							</li>
 						</ul>
 					</nav>
+				<!--/ End Pagination -->
 				</main>
 			</div>
 		</div>
 	</section>
-
 	<!-- Start Most Popular -->
 	<?php include '../sistema/nuevos-articulos.php'; ?>
 	<!-- End Most Popular Area -->
-
 	<!-- Social Area -->
-	<section class="social-area section sec wow fadeInUp">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-whatsapp" style="color: #4ac959;"></i>
-							<h4>WhatsApp</h4>
-							<p>¡Envíanos un mensaje!</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-instagram" style="color: #e1306c;"></i>
-							<h4>Instagram</h4>
-							<p>¡Siguenos en Instagram!</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="social-area-content">
-						<a href="#" target="_blank">
-							<i class="fa fa-facebook" style="color: #5cc5ff;"></i>
-							<h4>Facebook</h4>
-							<p>¡Siguenos en Facebook!</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+		<?php include '../sistema/plantillas/rrssMarket.php'; ?>
 	<!-- /Social Area -->
-
 	<!-- Start Footer Area -->
 	<footer class="footer">
 		<div class="copyright">

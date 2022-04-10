@@ -174,7 +174,7 @@ noUserLvl2();
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="descripcion" style="width: 100%;">Precio:
-                                            <input type="number" class="form-control" name="precio" placeholder="Indica el precio">
+                                            <input type="number" class="form-control" name="precio" placeholder="Indica el precio" min="0.0" max="9999999.99" step="0.01" required>
                                         </label>
                                     </div>
                                 </div>
